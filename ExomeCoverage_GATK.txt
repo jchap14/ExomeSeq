@@ -1,0 +1,28 @@
+java -jar GenomeAnalysisTK.jar
+              -T DiagnoseTargets \
+              -R reference.fasta \
+              -I sample1.bam \
+              -I sample2.bam \
+              -I sample3.bam \
+              -L intervals.interval_list \
+              -o output.vcf
+              
+
+
+
+
+referenceFasta=/srv/gsfs0/projects/snyder/chappell/Annotations/UCSC-hg19/WholeGenomeFasta/genome.fa
+BAM1=probnd.R1.markdup.realigned.bam
+BAM2=mother.R1.markdup.realigned.bam
+BAM3=father.R1.markdup.realigned.bam
+
+
+
+java -jar GenomeAnalysisTK.jar
+              -T DiagnoseTargets \
+              -R $referenceFasta \
+              -I $BAM1 \
+              -I $BAM2 \
+              -I $BAM3 \
+              -L targets.bed \
+              -o output.vcf
