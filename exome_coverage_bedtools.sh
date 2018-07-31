@@ -13,7 +13,7 @@ TARGETBED="/srv/gsfs0/projects/snyder/chappell/Annotations/clinical_exome_target
 NAME=`basename $1 .bwa.sorted.nodup.bam`
 
 
-cat > /tmp/tempscript.sh << EOF
+cat > $NAME.tempscript.sh << EOF
 #!/bin/bash -l
 #SBATCH --job-name $NAME.coverage
 #SBATCH --output=$NAME.coverage.out
