@@ -30,6 +30,7 @@ cat > $NAME.tempscript.sh << EOF
 
 ##### Run commands:
 ##usage: coverageBed [OPTIONS] -a <BED/GFF/VCF> -b <BED/GFF/VCF>
+source activate ExomeSeq
 echo \`bedtools -version\`
 bedtools coverage -hist -abam $BAMFILE -b $TARGETBED | grep ^all > $NAME.bam.hist.all.txt
 EOF
