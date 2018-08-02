@@ -4,7 +4,7 @@
 # for x in `/bin/ls *.bam` ; do bash exome_coverage_bedtools.sh $x; done
 
 ## add modules
-#module add bedtools/2.16.2
+#module add bedtools/2.16.2 # actually might work with newest version
 
 ## define variables
 BAMFILE=$1
@@ -36,12 +36,15 @@ EOF
 ## qsub then remove the tempscript
 sbatch $NAME.tempscript.sh #scg
 sleep 1
-# rm $NAME.tempscript.sh
+rm $NAME.tempscript.sh
 
 ##### test command: use bedtools version 2.16.2
-# bamfile="M4.trim.R1.markdup.realigned.bam"
-# name=`basename $bamfile .trim.R1.markdup.realigned.bam`
-# bedtools coverage -hist -abam $bamfile -b clinical_exome_targets.bed | grep ^all > $name.bam.hist.all.txt
+# module add bedtools/2.16.2
+
+# bamfile="IR10I2_GCCAAT_1.bwa.sorted.bam"
+# name=`basename $bamfile .bam`
+# TARGETBED="/srv/gsfs0/projects/snyder/chappell/Annotations/clinical_exome_targets.bed"
+# bedtools coverage -hist -abam $bamfile -b $TARGETBED | grep ^all > $name.bam.hist.all.txt
 # 
 # bamfile="MC.trim.R1.markdup.realigned.bam"
 # name=`basename $bamfile .trim.R1.markdup.realigned.bam`
