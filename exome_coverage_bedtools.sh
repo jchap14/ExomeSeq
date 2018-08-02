@@ -29,9 +29,8 @@ cat > $NAME.tempscript.sh << EOF
 
 ##### Run commands:
 ##usage: coverageBed [OPTIONS] -a <BED/GFF/VCF> -b <BED/GFF/VCF>
-module add bedtools/2.16.2
-echo \`which bedtools\`
-bedtools coverage -hist -abam $BAMFILE -b $TARGETBED | grep ^all > $NAME.bam.hist.all.txt
+echo \`bedtools -version\`
+bedtools coverage -hist -a $TARGETBED -b $BAMFILE | grep ^all > $NAME.bam.hist.all.txt
 EOF
 
 ## qsub then remove the tempscript
