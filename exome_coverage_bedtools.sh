@@ -4,6 +4,7 @@
 # for x in `/bin/ls *.bam` ; do bash exome_coverage_bedtools.sh $x; done
 
 ## add modules
+source activate ExomeSeq #contains bedtools/2.16.2
 #module add bedtools/2.16.2 # actually might work with newest version
 
 ## define variables
