@@ -4,7 +4,7 @@
 # for x in `/bin/ls *.bam` ; do bash exome_coverage_bedtools.sh $x; done
 
 ## add modules
-source activate ExomeSeq #contains bedtools/2.16.2
+source /srv/gsfs0/projects/snyder/chappell/miniconda3/bin/activate ExomeSeq #contains bedtools/2.16.2
 #module add bedtools/2.16.2 # actually might work with newest version
 
 ## define variables
@@ -30,7 +30,7 @@ cat > $NAME.tempscript.sh << EOF
 
 ##### Run commands:
 ##usage: coverageBed [OPTIONS] -a <BED/GFF/VCF> -b <BED/GFF/VCF>
-source activate ExomeSeq
+source /srv/gsfs0/projects/snyder/chappell/miniconda3/bin/activate ExomeSeq
 echo \`bedtools -version\`
 bedtools coverage -hist -abam $BAMFILE -b $TARGETBED | grep ^all > $NAME.bam.hist.all.txt
 EOF
