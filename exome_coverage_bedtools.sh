@@ -1,7 +1,7 @@
 ##### Check breadth and depth of coverage for exome seq
 
 # for x in `/bin/ls *.markdup.realigned.bam` ; do bash exome_coverage_bedtools.sh $x; done
-# for x in `/bin/ls *.sorted.nodup.bam` ; do bash exome_coverage_bedtools.sh $x; done
+# for x in `/bin/ls *.bam` ; do bash exome_coverage_bedtools.sh $x; done
 
 ## add modules
 module add bedtools/2.16.2
@@ -10,7 +10,7 @@ module add bedtools/2.16.2
 BAMFILE=$1
 TARGETBED="/srv/gsfs0/projects/snyder/chappell/Annotations/clinical_exome_targets.bed"
 #NAME=`basename $1 .markdup.realigned.bam`
-NAME=`basename $1 .bwa.sorted.nodup.bam`
+NAME=`basename $1 .bam`
 
 
 cat > $NAME.tempscript.sh << EOF
@@ -29,13 +29,15 @@ cat > $NAME.tempscript.sh << EOF
 
 ##### Run commands:
 ##usage: coverageBed [OPTIONS] -a <BED/GFF/VCF> -b <BED/GFF/VCF>
+module add bedtools/2.16.2
+echo \`which bedtools\`
 bedtools coverage -hist -abam $BAMFILE -b $TARGETBED | grep ^all > $NAME.bam.hist.all.txt
 EOF
 
 ## qsub then remove the tempscript
 sbatch $NAME.tempscript.sh #scg
 sleep 1
-rm $NAME.tempscript.sh
+# rm $NAME.tempscript.sh
 
 ##### test command: use bedtools version 2.16.2
 # bamfile="M4.trim.R1.markdup.realigned.bam"
